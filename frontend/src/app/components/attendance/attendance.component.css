@@ -1,0 +1,11 @@
+select, input {
+  width: 100%;
+}
+
+.grid-2 {
+  align-items: flex-end;
+}
+
+button {
+  margin-top: 1rem;
+}

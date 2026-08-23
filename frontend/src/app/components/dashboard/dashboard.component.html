@@ -1,0 +1,724 @@
+<!-- =========================
+     DASHBOARD SUMMARY
+========================= -->
+<div class="card dashboard-card">
+
+  <h2>Dashboard</h2>
+
+  <p>
+    Use this panel to navigate the employee attendance tracker.
+  </p>
+
+
+  <div class="grid grid-2">
+
+    <!-- Active Employees -->
+    <div class="card summary-card">
+
+      <h3>Active employees</h3>
+
+      <p class="badge">
+        {{ employeeCount }}
+      </p>
+
+    </div>
+
+
+    <!-- Locations -->
+    <div class="card summary-card">
+
+      <h3>Locations</h3>
+
+      <p class="badge">
+        {{ locationCount }}
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!-- =========================
+     ADD EMPLOYEE
+========================= -->
+<div class="card employee-form-card">
+
+  <div class="form-header">
+
+    <h2>Add Employee</h2>
+
+    <p>
+      Enter basic details to register a new employee into the system.
+    </p>
+
+  </div>
+
+
+  <form
+    (ngSubmit)="submitEmployee()"
+    class="employee-form"
+  >
+
+
+    <!-- =========================
+         EMPLOYEE NAME
+    ========================= -->
+    <div class="form-row full-width">
+
+      <label for="employeeName">
+
+        Employee Name
+
+        <span class="required">
+          *
+        </span>
+
+      </label>
+
+
+      <input
+        id="employeeName"
+        type="text"
+        placeholder="e.g. John Doe"
+        [(ngModel)]="addEmployeeForm.name"
+        name="employeeName"
+        required
+      />
+
+    </div>
+
+
+
+    <!-- =========================
+         MOBILE + LOCATION
+    ========================= -->
+    <div class="form-grid">
+
+
+      <!-- Mobile -->
+      <div class="form-row">
+
+        <label for="employeeMobile">
+
+          Mobile Number
+
+          <span class="required">
+            *
+          </span>
+
+        </label>
+
+
+        <input
+          id="employeeMobile"
+          type="text"
+          placeholder="+1 (555) 000-0000"
+          [(ngModel)]="addEmployeeForm.mobile"
+          name="employeeMobile"
+          required
+        />
+
+      </div>
+
+
+
+      <!-- Location -->
+      <div class="form-row">
+
+        <label for="employeeLocation">
+
+          Location
+
+          <span class="required">
+            *
+          </span>
+
+        </label>
+
+
+        <select
+          id="employeeLocation"
+          [(ngModel)]="addEmployeeForm.locationId"
+          name="employeeLocation"
+          required
+        >
+
+          <option
+            [ngValue]="null"
+          >
+            Select location
+          </option>
+
+
+          <option
+            *ngFor="let location of locations"
+            [ngValue]="location.id"
+          >
+            {{ location.name }}
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         DAILY RATE
+    ========================= -->
+    <div class="form-grid">
+
+      <div class="form-row">
+
+        <label for="dailyRate">
+
+          Daily Rate
+
+          <span class="required">
+            *
+          </span>
+
+        </label>
+
+
+        <div class="input-with-prefix">
+
+          <span>
+            ₹
+          </span>
+
+
+          <input
+            id="dailyRate"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="0.00"
+            [(ngModel)]="addEmployeeForm.dailyRate"
+            name="dailyRate"
+            required
+          />
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         HOURLY + OVERTIME RATE
+    ========================= -->
+    <div class="grid grid-2">
+
+
+      <!-- Hourly Rate -->
+      <div class="form-row">
+
+        <label for="hourlyRate">
+
+          Hourly Rate
+
+          <span class="required">
+            *
+          </span>
+
+        </label>
+
+
+        <div class="input-with-prefix">
+
+          <span>
+            ₹
+          </span>
+
+
+          <input
+            id="hourlyRate"
+            type="number"
+            min="0"
+            step="0.01"
+            [(ngModel)]="addEmployeeForm.hourlyRate"
+            name="hourlyRate"
+            required
+          />
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Overtime Rate -->
+      <div class="form-row">
+
+        <label for="overtimeRate">
+
+          Overtime Rate
+
+          <span class="required">
+            *
+          </span>
+
+        </label>
+
+
+        <div class="input-with-prefix">
+
+          <span>
+            ₹
+          </span>
+
+
+          <input
+            id="overtimeRate"
+            type="number"
+            min="0"
+            step="0.01"
+            [(ngModel)]="addEmployeeForm.overtimeRate"
+            name="overtimeRate"
+            required
+          />
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         ACTIVE EMPLOYEE
+    ========================= -->
+    <div class="form-row active-row">
+
+      <label class="active-label">
+
+        <input
+          type="checkbox"
+          [(ngModel)]="addEmployeeForm.active"
+          name="active"
+        />
+
+
+        <span>
+          Active employee
+        </span>
+
+      </label>
+
+    </div>
+
+
+
+    <!-- Divider -->
+    <div class="form-divider"></div>
+
+
+
+    <!-- =========================
+         ADD EMPLOYEE BUTTON
+    ========================= -->
+    <div class="action-row">
+
+     <button
+  type="submit"
+  class="primary-button"
+>
+  {{ isEditMode ? 'Update Employee' : 'Add Employee' }}
+</button>
+
+
+    </div>
+
+  </form>
+
+</div>
+
+
+
+<!-- =====================================================
+     EMPLOYEE MANAGEMENT
+     TABLE HIDDEN BY DEFAULT
+===================================================== -->
+<div class="card employee-list-card">
+
+
+  <!-- =========================
+       EDIT / DELETE BUTTON
+  ========================= -->
+  <div class="employee-action-header">
+
+    <button
+      type="button"
+      class="edit-delete-employee-btn"
+      (click)="toggleEmployeeTable()"
+    >
+
+      {{
+        showEmployeeTable
+          ? 'Hide Employees'
+          : 'Edit / Delete Employee'
+      }}
+
+    </button>
+
+  </div>
+
+
+
+  <!-- =====================================================
+       SEARCH + TABLE
+       SHOW ONLY AFTER BUTTON CLICK
+  ===================================================== -->
+  <div
+    class="employee-management"
+    *ngIf="showEmployeeTable"
+  >
+
+
+    <!-- =========================
+         SEARCH
+    ========================= -->
+    <div class="employee-search">
+
+      <input
+        type="text"
+        [(ngModel)]="employeeSearch"
+        (input)="searchEmployee()"
+        placeholder="Search employee by name..."
+      />
+
+
+      <button
+        type="button"
+        class="clear-search"
+        *ngIf="employeeSearch"
+        (click)="employeeSearch = ''; searchEmployee()"
+      >
+        Clear
+      </button>
+
+    </div>
+
+
+
+    <!-- =========================
+         EMPLOYEE TABLE
+    ========================= -->
+    <div class="table-wrapper">
+
+      <table class="employee-table">
+
+
+        <!-- =========================
+             TABLE HEADER
+        ========================= -->
+        <thead>
+
+          <tr>
+
+            <th>
+              Name
+            </th>
+
+
+            <th>
+              Mobile
+            </th>
+
+
+            <th>
+              Location
+            </th>
+
+
+            <th>
+              Daily Rate
+            </th>
+
+
+            <th>
+              Status
+            </th>
+
+
+            <th>
+              Action
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+
+        <!-- =========================
+             TABLE BODY
+        ========================= -->
+        <tbody>
+
+
+          <!-- =========================
+               EMPLOYEE RECORDS
+          ========================= -->
+          <tr
+            *ngFor="let employee of filteredEmployees"
+          >
+
+
+            <!-- Name -->
+            <td>
+
+              {{ employee.name }}
+
+            </td>
+
+
+
+            <!-- Mobile -->
+            <td>
+
+              {{ employee.mobile || '-' }}
+
+            </td>
+
+
+
+            <!-- Location -->
+            <td>
+
+              {{
+                employee.location?.name
+                || employee.locationName
+                || '-'
+              }}
+
+            </td>
+
+
+
+            <!-- Daily Rate -->
+            <td>
+
+              ₹ {{ employee.dailyRate }}
+
+            </td>
+
+
+
+            <!-- Status -->
+            <td>
+
+              <span
+                class="status-badge"
+                [class.active]="employee.active"
+                [class.inactive]="!employee.active"
+              >
+
+                {{
+                  employee.active
+                    ? 'Active'
+                    : 'Inactive'
+                }}
+
+              </span>
+
+            </td>
+
+
+
+            <!-- Actions -->
+            <td class="action-cell">
+
+
+              <!-- Update -->
+              <button
+                type="button"
+                class="edit-button"
+                (click)="editEmployee(employee)"
+              >
+                Update
+              </button>
+
+
+
+              <!-- Delete -->
+              <button
+                type="button"
+                class="delete-button"
+                (click)="deleteEmployee(employee.id)"
+              >
+                Delete
+              </button>
+
+            </td>
+
+          </tr>
+
+
+
+          <!-- =========================
+               NO EMPLOYEE / NO SEARCH RESULT
+          ========================= -->
+          <tr
+            *ngIf="filteredEmployees.length === 0"
+          >
+
+            <td
+              colspan="6"
+              class="no-data"
+            >
+              No employees found.
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- =========================
+     ADD LOCATION
+========================= -->
+<div class="card employee-form-card">
+
+
+  <div class="form-header">
+
+    <h2>
+      Add Location
+    </h2>
+
+
+    <p>
+      Add a new employee work location.
+    </p>
+
+  </div>
+
+
+
+  <form
+    (ngSubmit)="submitLocation()"
+    class="employee-form"
+  >
+
+
+    <div class="form-grid">
+
+
+      <!-- Location Name -->
+      <div class="form-row">
+
+        <label for="locationName">
+
+          Location Name
+
+          <span class="required">
+            *
+          </span>
+
+        </label>
+
+
+        <input
+          id="locationName"
+          type="text"
+          placeholder="e.g. Pune"
+          [(ngModel)]="addLocationForm.name"
+          name="locationName"
+          required
+        />
+
+      </div>
+
+
+
+      <!-- Address -->
+      <div class="form-row">
+
+        <label for="locationAddress">
+          Address
+        </label>
+
+
+        <input
+          id="locationAddress"
+          type="text"
+          placeholder="Location address"
+          [(ngModel)]="addLocationForm.address"
+          name="locationAddress"
+        />
+
+      </div>
+
+    </div>
+
+
+
+    <!-- Divider -->
+    <div class="form-divider"></div>
+
+
+
+    <!-- Add Location -->
+    <div class="action-row">
+
+      <button
+        type="submit"
+        class="primary-button"
+      >
+        Add Location
+      </button>
+
+    </div>
+
+  </form>
+
+</div>
+
+
+
+<!-- =========================
+     QUICK ACTIONS
+========================= -->
+<div class="card quick-actions-card">
+
+  <h3>
+    Quick Actions
+  </h3>
+
+
+  <ul>
+
+    <li>
+      Register attendance for field worker
+    </li>
+
+
+    <li>
+      View location and consolidated payroll reports
+    </li>
+
+
+    <li>
+      Track advances, expenses, and travel charges in the backend
+    </li>
+
+  </ul>
+
+</div>

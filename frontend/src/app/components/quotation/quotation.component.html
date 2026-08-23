@@ -1,0 +1,327 @@
+<div class="card quotation-card">
+
+  <!-- ==========================
+       HEADER
+       ========================== -->
+
+  <div class="quotation-header">
+
+    <div>
+
+      <h2>Create Quotation</h2>
+
+      <p>
+        Enter the client details, charges, bank details
+        and quotation rates.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- ==========================
+       CLIENT DETAILS
+       ========================== -->
+
+  <h3>Quotation Details</h3>
+
+  <div class="grid grid-2">
+
+    <div>
+
+      <label for="clientName">
+        Client Name *
+      </label>
+
+      <input
+        id="clientName"
+        type="text"
+        [(ngModel)]="clientName"
+        placeholder="Enter client/company name"
+      />
+
+    </div>
+
+
+    <div>
+
+      <label for="quotationDate">
+        Quotation Date
+      </label>
+
+      <input
+        id="quotationDate"
+        type="date"
+        [(ngModel)]="quotationDate"
+      />
+
+    </div>
+
+  </div>
+
+
+  <!-- ==========================
+       TERMS & CONDITIONS DETAILS
+       ========================== -->
+
+  <h3>Terms & Conditions</h3>
+
+  <div class="grid grid-2">
+
+    <div>
+
+      <label for="toAndFroCharges">
+        To & Fro Charges *
+      </label>
+
+      <input
+        id="toAndFroCharges"
+        type="number"
+        min="0"
+        step="0.01"
+        [(ngModel)]="toAndFroCharges"
+        placeholder="Enter charges per technician"
+      />
+
+      <small>
+        Example: 1500
+      </small>
+
+    </div>
+
+  </div>
+
+
+  <!-- ==========================
+       BANK DETAILS
+       ========================== -->
+
+  <h3>Bank Details</h3>
+
+  <div class="grid grid-2">
+
+    <!-- Account Holder -->
+
+    <div>
+
+      <label for="bankAccountHolderName">
+        Name *
+      </label>
+
+      <input
+        id="bankAccountHolderName"
+        type="text"
+        [(ngModel)]="bankAccountHolderName"
+        placeholder="Enter account holder name"
+      />
+
+    </div>
+
+
+    <!-- Account Number -->
+
+    <div>
+
+      <label for="bankAccountNo">
+        Account No *
+      </label>
+
+      <input
+        id="bankAccountNo"
+        type="text"
+        [(ngModel)]="bankAccountNo"
+        placeholder="Enter account number"
+      />
+
+    </div>
+
+
+    <!-- Bank -->
+
+    <div>
+
+      <label for="bankName">
+        Bank *
+      </label>
+
+      <input
+        id="bankName"
+        type="text"
+        [(ngModel)]="bankName"
+        placeholder="Enter bank name"
+      />
+
+    </div>
+
+
+    <!-- Branch -->
+
+    <div>
+
+      <label for="bankBranch">
+        Branch *
+      </label>
+
+      <input
+        id="bankBranch"
+        type="text"
+        [(ngModel)]="bankBranch"
+        placeholder="Enter branch"
+      />
+
+    </div>
+
+
+    <!-- IFSC -->
+
+    <div>
+
+      <label for="bankIfscCode">
+        IFSC Code *
+      </label>
+
+      <input
+        id="bankIfscCode"
+        type="text"
+        [(ngModel)]="bankIfscCode"
+        placeholder="Enter IFSC code"
+        style="text-transform: uppercase;"
+      />
+
+    </div>
+
+    <!-- Company Name --> 
+     <div>
+      <label for="companyName">
+        Company Name *
+      </label>
+
+      <input
+        id="companyName"
+        type="text"
+        [(ngModel)]="companyName"
+        placeholder="Enter company name"
+      />
+     </div>
+
+  </div>
+
+
+  <!-- ==========================
+       QUOTATION ITEMS
+       ========================== -->
+
+  <h3>Quotation Items</h3>
+
+  <div class="table-wrapper">
+
+    <table class="table quotation-table">
+
+      <thead>
+
+        <tr>
+
+          <th>Select</th>
+
+          <th>Sr. No.</th>
+
+          <th>Description</th>
+
+          <th>Rate</th>
+
+          <th>Unit</th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+        <tr
+          *ngFor="let item of rates; let i = index"
+        >
+
+          <td>
+
+            <input
+              class="check"
+              type="checkbox"
+              [(ngModel)]="item.selected"
+            />
+
+          </td>
+
+
+          <td>
+            {{ i + 1 }}
+          </td>
+
+
+          <td>
+            {{ item.description }}
+          </td>
+
+
+          <td>
+
+            <input
+              class="rate-input"
+              type="number"
+              min="0"
+              step="0.01"
+              [(ngModel)]="item.rate"
+            />
+
+          </td>
+
+
+          <td>
+            {{ item.unit }}
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+
+  <!-- ==========================
+       GENERATE
+       ========================== -->
+
+  <div class="actions">
+
+    <button
+      type="button"
+      (click)="generateQuotation()"
+      [disabled]="loading"
+    >
+
+      {{
+        loading
+          ? 'Generating PDF...'
+          : 'Generate Quotation PDF'
+      }}
+
+    </button>
+
+  </div>
+
+
+  <!-- ==========================
+       MESSAGE
+       ========================== -->
+
+  <p
+    *ngIf="message"
+    class="message"
+  >
+    {{ message }}
+  </p>
+
+</div>

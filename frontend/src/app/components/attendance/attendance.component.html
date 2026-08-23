@@ -1,0 +1,41 @@
+<div class="card">
+  <h2>Attendance Entry</h2>
+  <div>
+    <label for="employee">Employee</label>
+    <select id="employee" [(ngModel)]="selectedEmployeeId">
+      <option [ngValue]="null">Select employee</option>
+      <option *ngFor="let employee of employees" [ngValue]="employee.id">
+        {{ employee.name }} ({{ employee.location?.name || 'No location' }})
+      </option>
+    </select>
+  </div>
+
+  <div class="grid grid-2">
+    <div>
+      <label for="checkIn">Check In</label>
+      <input id="checkIn" type="datetime-local" [(ngModel)]="checkIn" />
+    </div>
+    <div>
+      <label for="checkOut">Check Out</label>
+      <input id="checkOut" type="datetime-local" [(ngModel)]="checkOut" />
+    </div>
+  </div>
+
+  <div>
+    <label for="overtimeHours">Overtime Hours</label>
+    <input id="overtimeHours" type="number" min="0" step="0.25" [(ngModel)]="overtimeHours" />
+  </div>
+
+  <button (click)="submitAttendance()">Save Attendance</button>
+  <p *ngIf="message">{{ message }}</p>
+</div>
+
+<div class="card">
+  <h2>Upload Attendance Excel</h2>
+  <div>
+    <label for="attendanceFile">Excel workbook</label>
+    <input id="attendanceFile" type="file" accept=".xls,.xlsx" (change)="onFileChanged($event)" />
+  </div>
+  <button (click)="uploadAttendanceWorkbook()">Upload workbook</button>
+  <p *ngIf="uploadMessage">{{ uploadMessage }}</p>
+</div>

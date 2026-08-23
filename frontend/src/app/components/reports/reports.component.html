@@ -1,0 +1,124 @@
+<div class="card">
+  <h2>Reports</h2>
+  <div class="grid grid-2">
+    <div>
+      <label>Start Date</label>
+      <input type="date" [(ngModel)]="startDate" />
+    </div>
+    <div>
+      <label>End Date</label>
+      <input type="date" [(ngModel)]="endDate" />
+    </div>
+  </div>
+  <div class="grid grid-2">
+    <div>
+      <label>Employee</label>
+      <select [(ngModel)]="selectedEmployeeId">
+        <option [ngValue]="null">Choose employee</option>
+        <option *ngFor="let employee of employees" [ngValue]="employee.id">{{ employee.name }}</option>
+      </select>
+      <button (click)="loadEmployeeReport()">Load Employee Report</button>
+    </div>
+    <div>
+      <label>Location</label>
+      <select [(ngModel)]="selectedLocationId">
+        <option [ngValue]="null">Choose location</option>
+        <option *ngFor="let location of locations" [ngValue]="location.id">{{ location.name }}</option>
+      </select>
+      <button (click)="loadLocationReport()">Load Location Report</button>
+    </div>
+  </div>
+  <button (click)="loadConsolidatedReport()">Load Consolidated Report</button>
+</div>
+
+<div *ngIf="employeeReport.length" class="card">
+  <h3>Employee Report</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Employee</th>
+        <th>Location</th>
+        <th>Number Of Days</th>
+        <th>Overtime</th>
+        <th>Gross Pay</th>
+        <th>Advances</th>
+        <th>Expenses</th>
+        <th>Travel</th>
+        <th>Net Pay</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of employeeReport">
+        <td>{{ row.employeeName }}</td>
+        <td>{{ row.locationName }}</td>
+        <td>{{ row.totalHours }}</td>
+        <td>{{ row.totalOvertime }}</td>
+        <td>{{ row.grossPay }}</td>
+        <td>{{ row.advances }}</td>
+        <td>{{ row.expenses }}</td>
+        <td>{{ row.travelCharges }}</td>
+        <td>{{ row.netPay }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="locationReport.length" class="card">
+
+  <h3>Location Report</h3>
+
+  <button
+    type="button"
+    (click)="downloadLocationReportPdf()">
+    Download PDF
+  </button>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Employee</th>
+        <th>Number Of Days</th>
+        <th>Overtime</th>
+        <th>Advance</th>
+        <th>Gross Pay</th>
+        <th>Net Pay</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let row of locationReport">
+        <td>{{ row.employeeName }}</td>
+        <td>{{ row.totalHours }}</td>
+        <td>{{ row.totalOvertime }}</td>
+        <td>{{ row.advances }}</td>
+        <td>{{ row.grossPay }}</td>
+        <td>{{ row.netPay }}</td>
+      </tr>
+
+      <tr>
+        <td colspan="5"></td>
+        <td>
+          <strong>
+            Total Net Pay: {{ totalLocationNetPay }}
+          </strong>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+</div>
+
+<div *ngIf="consolidatedReport" class="card">
+  <h3>Consolidated Report</h3>
+  <div class="grid grid-2">
+    <div><strong>Total Hours</strong><p>{{ consolidatedReport.totalHours }}</p></div>
+    <div><strong>Total Overtime</strong><p>{{ consolidatedReport.totalOvertime }}</p></div>
+    <div><strong>Total Gross</strong><p>{{ consolidatedReport.grossPay }}</p></div>
+    <div><strong>Total Advances</strong><p>{{ consolidatedReport.advances }}</p></div>
+    <div><strong>Total Expenses</strong><p>{{ consolidatedReport.expenses }}</p></div>
+    <div><strong>Total Travel</strong><p>{{ consolidatedReport.travelCharges }}</p></div>
+    <div><strong>Net Pay</strong><p>{{ consolidatedReport.netPay }}</p></div>
+  </div>
+</div>

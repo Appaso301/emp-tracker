@@ -1,0 +1,653 @@
+/* =========================================================
+   EMPLOYEE PAGE
+   ========================================================= */
+
+h2,
+h3 {
+  margin-top: 0;
+  color: #102a43;
+}
+
+
+/* =========================================================
+   MAIN CARD
+   ========================================================= */
+
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   EMPLOYEE HEADER
+   ========================================================= */
+
+.employee-page h2 {
+  font-size: 32px;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.employee-page p {
+  font-size: 18px;
+  color: #486581;
+  margin-bottom: 24px;
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.table-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+
+/* Main employee table */
+.employee-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+
+  font-size: 16px;
+}
+
+
+/* =========================================================
+   TABLE HEADER
+   ========================================================= */
+
+.employee-table thead th {
+  padding: 12px 8px;
+
+  text-align: left;
+
+  font-weight: 700;
+  color: #102a43;
+
+  white-space: nowrap;
+
+  border-bottom: 2px solid #e5e7eb;
+}
+
+
+/* =========================================================
+   TABLE BODY
+   ========================================================= */
+
+.employee-table tbody td {
+  padding: 14px 8px;
+
+  color: #102a43;
+
+  white-space: nowrap;
+
+  vertical-align: middle;
+
+  border-bottom: 1px solid #f1f3f5;
+}
+
+
+/* Row hover */
+.employee-table tbody tr:hover {
+  background-color: #fafafa;
+}
+
+
+/* =========================================================
+   COLUMN WIDTHS
+   ========================================================= */
+
+/* Name */
+.employee-table th:nth-child(1),
+.employee-table td:nth-child(1) {
+  width: 16%;
+}
+
+
+/* Mobile */
+.employee-table th:nth-child(2),
+.employee-table td:nth-child(2) {
+  width: 14%;
+}
+
+
+/* Location */
+.employee-table th:nth-child(3),
+.employee-table td:nth-child(3) {
+  width: 13%;
+}
+
+
+/* Daily Rate */
+.employee-table th:nth-child(4),
+.employee-table td:nth-child(4) {
+  width: 11%;
+}
+
+
+/* Hourly Rate */
+.employee-table th:nth-child(5),
+.employee-table td:nth-child(5) {
+  width: 11%;
+}
+
+
+/* Overtime Rate */
+.employee-table th:nth-child(6),
+.employee-table td:nth-child(6) {
+  width: 13%;
+}
+
+
+/* Status */
+.employee-table th:nth-child(7),
+.employee-table td:nth-child(7) {
+  width: 10%;
+}
+
+
+/* Action */
+.employee-table th:nth-child(8),
+.employee-table td:nth-child(8) {
+  width: 15%;
+  text-align: center;
+}
+
+/* =========================================================
+   STATUS - ACTIVE
+   ========================================================= */
+
+.status-active {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background-color: #dcfce7;
+  color: #166534;
+
+  padding: 5px 12px;
+
+  border-radius: 16px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   STATUS - INACTIVE
+   ========================================================= */
+
+.status-inactive {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background-color: #fee2e2;
+  color: #991b1b;
+
+  padding: 5px 12px;
+
+  border-radius: 16px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
+.action-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px !important;
+  padding: 20px 10px;
+}
+/* Update button */
+.action-cell .edit-button {
+  background: #b5aa3f;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0 !important;
+}
+
+/* Delete button */
+.action-cell .delete-button {
+  background: #ed1515;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0 !important;
+}
+.action-buttons {
+ display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.action-buttons .update-btn {
+  margin-right: 10px !important;
+}
+
+.action-buttons .delete-btn {
+  margin-left: 10px !important;
+}
+/* =========================================================
+   UPDATE BUTTON
+   ========================================================= */
+
+.update-btn {
+    background-color: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fcd34d;
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.update-btn:hover {
+  background-color: #fde68a;
+  color: #78350f;
+}
+
+
+/* =========================================================
+   DELETE BUTTON
+   ========================================================= */
+
+.delete-btn {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #fecaca;
+  color: #7f1d1d;
+}
+
+
+/* =========================================================
+   BUTTON ACTIVE STATE
+   ========================================================= */
+
+.update-btn:active,
+.delete-btn:active {
+  transform: scale(0.97);
+}
+
+
+/* =========================================================
+   EMPLOYEE FORM
+   ========================================================= */
+
+.employee-form-card {
+  margin-top: 24px;
+}
+
+.employee-form {
+  display: grid;
+  gap: 16px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-row label {
+  font-weight: 600;
+  color: #102a43;
+}
+
+.form-row input,
+.form-row select {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 10px 12px;
+
+  border: 1px solid #ccd6e0;
+  border-radius: 7px;
+
+  font-size: 16px;
+
+  outline: none;
+}
+
+.form-row input:focus,
+.form-row select:focus {
+  border-color: #2b6cb0;
+}
+
+
+/* =========================================================
+   TWO COLUMN FORM
+   ========================================================= */
+.grid.grid-2 .active-row {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  padding-top: 10px;
+}
+
+
+/* =========================================================
+   CHECKBOX
+   ========================================================= */
+
+.checkbox-row {
+  display: flex;
+
+  flex-direction: row;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.checkbox-row label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkbox-row input {
+  width: auto;
+}
+
+
+/* =========================================================
+   ACTION ROW
+   ========================================================= */
+
+.action-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.action-row button {
+  border: none;
+
+  background: #2b6cb0;
+  color: white;
+
+  padding: 10px 18px;
+
+  border-radius: 7px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.action-row button:hover {
+  background: #245a94;
+}
+
+
+/* =========================================================
+   MESSAGES
+   ========================================================= */
+
+.messages {
+  font-size: 14px;
+  color: #265;
+}
+
+
+/* =========================================================
+   BADGE
+   ========================================================= */
+
+.badge {
+  font-size: 1.5rem;
+}
+
+/* =========================================================
+   ACTIVE EMPLOYEE + CHECKBOX
+   ========================================================= */
+
+.active-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  padding-top: 28px;
+  width: 100%;
+}
+
+.active-label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+
+  font-size: 16px;
+  font-weight: 600;
+  color: #102a43;
+
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.active-label input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #2563eb;
+}
+
+/* Checkbox when focused */
+.active-label input[type="checkbox"]:focus {
+  outline: 2px solid rgba(37, 99, 235, 0.25);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   ADD EMPLOYEE ACTIVE EMPLOYEE
+   ========================================================= */
+
+.employee-form > .active-row,
+.employee-form .checkbox-row {
+  display: flex;
+  align-items: baseline;
+}
+
+.employee-form .active-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .active-row {
+    padding-top: 10px;
+  }
+
+  .active-label {
+    font-size: 15px;
+  }
+
+  .active-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+  }
+}
+/* =========================================================
+   QUICK ACTIONS
+   ========================================================= */
+
+.card ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.card li {
+  margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   IMPORTANT:
+   PREVENT PAGE HORIZONTAL SCROLL
+   ========================================================= */
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+  .card {
+    padding: 20px;
+  }
+
+  .employee-table {
+    font-size: 14px;
+  }
+
+  .employee-table thead th,
+  .employee-table tbody td {
+    padding: 10px 5px;
+  }
+
+  .update-btn,
+  .delete-btn {
+    padding: 6px 8px;
+    font-size: 13px;
+  }
+
+  .status-active,
+  .status-inactive {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+}
+ .edit-button{
+  background-color: #aaa246  !important;
+ }
+
+ .delete-button{
+  background-color: #de1919 !important;
+ }
+
+ .employee-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0 25px 0;
+}
+
+.employee-search input {
+  width: 400px;
+  height: 42px;
+  padding: 0 14px;
+  border: 1px solid #ccd3dc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.employee-search input:focus {
+  border-color: #5578c9;
+  box-shadow: 0 0 0 2px rgba(85, 120, 201, 0.12);
+}
+
+.employee-search input::placeholder {
+  color: #999;
+}
+
+.clear-search {
+  height: 42px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 8px;
+  background: #777;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.clear-search:hover {
+  background: #555;
+}
+
+.no-results {
+  text-align: center;
+  padding: 30px;
+  color: #777;
+  font-size: 16px;
+}
+
+/* =========================================================
+   SMALL SCREEN
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .employee-table {
+    font-size: 13px;
+  }
+
+  .employee-table thead th,
+  .employee-table tbody td {
+    padding: 8px 4px;
+  }
+
+  .update-btn,
+  .delete-btn {
+    padding: 5px 7px;
+    font-size: 12px;
+  }
+}

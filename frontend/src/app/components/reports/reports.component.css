@@ -1,0 +1,11 @@
+button {
+  margin-top: 0.75rem;
+}
+
+.table {
+  margin-top: 1rem;
+}
+
+.table td, .table th {
+  white-space: nowrap;
+}

@@ -1,0 +1,57 @@
+<div class="card">
+  <h2>Finance Entry</h2>
+
+  <div class="grid grid-2">
+    <div>
+      <label for="employee">Employee</label>
+      <select id="employee" [(ngModel)]="selectedEmployeeId">
+        <option [ngValue]="null">Select employee</option>
+        <option *ngFor="let employee of employees" [ngValue]="employee.id">
+          {{ employee.name }} ({{ employee.location?.name || 'No location' }})
+        </option>
+      </select>
+    </div>
+    <div>
+      <label for="entryDate">Date</label>
+      <input id="entryDate" type="date" [(ngModel)]="date" />
+    </div>
+  </div>
+
+  <div class="grid grid-2">
+    <div>
+      <label for="amount">Amount</label>
+      <input id="amount" type="number" min="0" step="0.01" [(ngModel)]="amount" />
+    </div>
+    <div>
+      <label for="note">Note</label>
+      <input id="note" type="text" [(ngModel)]="note" placeholder="Optional note" />
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="panel">
+      <h3>Advance</h3>
+      <button (click)="submitAdvance()">Save Advance</button>
+    </div>
+
+    <div class="panel">
+      <h3>Expense</h3>
+      <label for="category">Category</label>
+      <select id="category" [(ngModel)]="category">
+        <option *ngFor="let item of expenseCategories" [ngValue]="item">{{ item }}</option>
+      </select>
+      <button (click)="submitExpense()">Save Expense</button>
+    </div>
+
+    <div class="panel">
+      <h3>Travel Charge</h3>
+      <label for="fromLocation">From</label>
+      <input id="fromLocation" type="text" [(ngModel)]="fromLocation" placeholder="Source location" />
+      <label for="toLocation">To</label>
+      <input id="toLocation" type="text" [(ngModel)]="toLocation" placeholder="Destination location" />
+      <button (click)="submitTravel()">Save Travel</button>
+    </div>
+  </div>
+
+  <p *ngIf="message" class="message">{{ message }}</p>
+</div>

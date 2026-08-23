@@ -1,0 +1,8 @@
+<div class="card">
+  <h2>Field Login</h2>
+  <p>Enter employee ID to begin attendance tracking.</p>
+  <label for="employeeId">Employee ID</label>
+  <input id="employeeId" [(ngModel)]="employeeId" placeholder="e.g. 1" />
+  <button (click)="onLogin()">Login</button>
+  <p *ngIf="message">{{ message }}</p>
+</div>
