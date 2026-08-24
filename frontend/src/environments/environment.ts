@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:8080/api'
+  production: true,
+  apiUrl: 'https://emp-tracker-1lrn.onrender.com/api'
 };
