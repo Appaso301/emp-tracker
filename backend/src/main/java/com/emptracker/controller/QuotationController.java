@@ -17,7 +17,8 @@ import java.util.List;
         "http://localhost:4200",
         "http://127.0.0.1:4200",
         "http://localhost:4201",
-        "http://127.0.0.1:4201"
+        "http://127.0.0.1:4201",
+        "https://emp-tracker-eosin.vercel.app"
 })
 public class QuotationController {
     private final QuotationService quotationService;

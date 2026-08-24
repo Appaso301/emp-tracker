@@ -9,7 +9,7 @@ import java.util.List;
 import com.emptracker.dto.LocationReportResponse;
 @RestController
 @RequestMapping("/api/reports")
-@CrossOrigin(origins = {"http://localhost:4200", "http://127.0.0.1:4201", "http://localhost:4201", "http://127.0.0.1:4200", "http://localhost:65300", "http://127.0.0.1:65300"})
+@CrossOrigin(origins = {"http://localhost:4200", "http://127.0.0.1:4201", "http://localhost:4201", "http://127.0.0.1:4200", "http://localhost:65300", "http://127.0.0.1:65300","https://emp-tracker-eosin.vercel.app"})
 public class ReportController {
 
     private final ReportService reportService;
