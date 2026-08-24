@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("https://emp-tracker-1lrn.onrender.com/api/employees")
+@RequestMapping("/api/employees")
 @CrossOrigin(
         origins = {
                 "http://localhost:4200",
@@ -18,7 +18,8 @@ import java.util.List;
                 "http://localhost:4201",
                 "http://127.0.0.1:4200",
                 "http://localhost:65300",
-                "http://127.0.0.1:65300"
+                "http://127.0.0.1:65300",
+                "https://emp-tracker-eosin.vercel.app"
         }
 )
 public class EmployeeController {
